@@ -46,9 +46,12 @@ gem "shakapacker", "= 7.2"
 
 gem "react-rails", "= 3.2"
 
+gem 'poke-api-v2'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "rspec-rails", "~> 6.1"
 end
 
 group :development do
@@ -66,5 +69,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-
+  gem "vcr", "~> 6.2"
+  gem "webmock", "~> 3.23"
 end

@@ -75,6 +75,7 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     base64 (0.2.0)
+    bigdecimal (3.1.6)
     bindex (0.8.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
@@ -93,16 +94,21 @@ GEM
       xpath (~> 3.2)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
+    crack (1.0.0)
+      bigdecimal
+      rexml
     crass (1.0.6)
     date (3.3.4)
     debug (1.9.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    diff-lcs (1.5.1)
     erubi (1.12.0)
     execjs (2.9.1)
     ffi (1.16.3)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    hashdiff (1.1.0)
     i18n (1.14.4)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
@@ -139,6 +145,7 @@ GEM
     nokogiri (1.16.2-x86_64-linux)
       racc (~> 1.4)
     package_json (0.1.0)
+    poke-api-v2 (0.1.1)
     popper_js (2.11.8)
     psych (5.1.2)
       stringio
@@ -192,6 +199,23 @@ GEM
     reline (0.4.3)
       io-console (~> 0.5)
     rexml (3.2.6)
+    rspec-core (3.13.0)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-rails (6.1.1)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      railties (>= 6.1)
+      rspec-core (~> 3.12)
+      rspec-expectations (~> 3.12)
+      rspec-mocks (~> 3.12)
+      rspec-support (~> 3.12)
+    rspec-support (3.13.1)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -227,11 +251,16 @@ GEM
     timeout (0.4.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    vcr (6.2.0)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    webmock (3.23.0)
+      addressable (>= 2.8.0)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
     websocket (1.2.10)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
@@ -249,16 +278,20 @@ DEPENDENCIES
   capybara
   debug
   jbuilder
+  poke-api-v2
   puma (~> 5.0)
   rails (~> 7.0.8)
   react-rails (= 3.2)
+  rspec-rails (~> 6.1)
   sassc-rails
   selenium-webdriver
   shakapacker (= 7.2)
   sprockets-rails
   sqlite3 (~> 1.4)
   tzinfo-data
+  vcr (~> 6.2)
   web-console
+  webmock (~> 3.23)
 
 RUBY VERSION
    ruby 3.1.4p223
