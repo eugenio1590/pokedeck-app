@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import {
   Container,
@@ -13,9 +13,27 @@ import Pagination from "./PaginationComponent"
 const images = require.context('../images', true)
 const logoUrl = images('./logo.png', true)
 
+const ITEMS_PER_PAGE = 10
+
 const Application = () => {
-  const data = [];
-  const [currentPage, setCurrentPage] = useState(1);
+  const [data, setData] = useState({count: 0, page: 1, results: []});
+
+  const onPageChanged = page => {
+    fetchData(page);
+  }
+
+  const fetchData = async page => {
+    if (page > 0) {
+      let response = await fetch(`/pokemon.json?page=${page}&limit=${ITEMS_PER_PAGE}`);
+      if (response.ok) {
+        let data = await response.json();
+        setData(data);
+      }
+    }
+  }
+
+  useEffect(() => { fetchData(data.page) }, []);
+
   return (
     <React.Fragment>
       <main className="text-white" style={{backgroundColor: "#ff0000ab", height: "100vh"}}>
@@ -33,14 +51,14 @@ const Application = () => {
           </Row>
           <Row>
             <Col lg={4}>
-              <PokemonList data={data} />
+              <PokemonList data={data.results} />
               <div
                 className="my-4">
                 <Pagination
-                  itemsCount={data.length}
-                  itemsPerPage={1}
-                  currentPage={currentPage}
-                  setCurrentPage={setCurrentPage}
+                  itemsCount={data.count}
+                  itemsPerPage={ITEMS_PER_PAGE}
+                  currentPage={data.page}
+                  setCurrentPage={onPageChanged}
                   alwaysShown={false}
                 />
               </div>
