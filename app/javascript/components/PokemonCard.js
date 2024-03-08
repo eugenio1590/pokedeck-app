@@ -6,7 +6,7 @@ const PokemonCard = ({ id, name, image, types, abilities }) => {
     const typesItems = types.map((type, index) => (<Badge key={index} bg="secondary" className="me-2">{type}</Badge>));
     const abilitiesItems = abilities.map((ability, index) => (<Badge key={index} bg="secondary" className="me-2">{ability}</Badge>));
     return (
-        <Card style={{ width: '12rem' }}>
+        <Card style={{ width: '15rem' }}>
             <Card.Header>#{id}</Card.Header>
             <Card.Img variant="top" src={image} width="205px"/>
             <Card.Body>

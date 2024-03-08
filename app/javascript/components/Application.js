@@ -36,7 +36,7 @@ const Application = () => {
 
   return (
     <React.Fragment>
-      <main className="text-white" style={{backgroundColor: "#ff0000ab", height: "100vh"}}>
+      <main className="text-white" style={{backgroundColor: "#ff0000ab", minHeight: "100vh"}}>
         <Container className="py-lg-8 py-5">
           <Row className="justify-content-center">
             <Col xl={8} lg={10} className="col-12">
@@ -50,7 +50,7 @@ const Application = () => {
             </Col>
           </Row>
           <Row>
-            <Col lg={4}>
+            <Col lg={12}>
               <PokemonList data={data.results} />
               <div
                 className="my-4">
@@ -62,9 +62,6 @@ const Application = () => {
                   alwaysShown={false}
                 />
               </div>
-            </Col>
-            <Col md={8} lg={6}>
-              {/*Pokemon Detail*/}
             </Col>
           </Row>
         </Container>

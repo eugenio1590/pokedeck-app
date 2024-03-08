@@ -7,7 +7,7 @@ import PokemonCard from "./PokemonCard";
 const PokemonList = ({data}) => {
     const columns = data.map(pokemon => (<Col key={pokemon.id}><PokemonCard {...pokemon}/></Col>))
     return (
-        <Row xs={1} md={2} className="g-4">
+        <Row xs={1} md={5} className="g-4">
             {columns}
         </Row>
     )
