@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 
 import {
   Container,
@@ -8,11 +8,14 @@ import {
 } from "react-bootstrap";
 
 import PokemonList from "./PokemonList";
+import Pagination from "./PaginationComponent"
 
 const images = require.context('../images', true)
 const logoUrl = images('./logo.png', true)
 
 const Application = () => {
+  const data = [];
+  const [currentPage, setCurrentPage] = useState(1);
   return (
     <React.Fragment>
       <main className="text-white" style={{backgroundColor: "#ff0000ab", height: "100vh"}}>
@@ -30,7 +33,17 @@ const Application = () => {
           </Row>
           <Row>
             <Col lg={4}>
-              <PokemonList data={[]} />
+              <PokemonList data={data} />
+              <div
+                className="my-4">
+                <Pagination
+                  itemsCount={data.length}
+                  itemsPerPage={1}
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                  alwaysShown={false}
+                />
+              </div>
             </Col>
             <Col md={8} lg={6}>
               {/*Pokemon Detail*/}
