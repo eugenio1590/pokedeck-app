@@ -14,7 +14,7 @@ import FullSpinner from "./FullSpinner";
 const images = require.context('../images', true)
 const logoUrl = images('./logo.png', true)
 
-const ITEMS_PER_PAGE = 10
+const ITEMS_PER_PAGE = 8
 
 const Application = () => {
   const [state, setState] = useState({isLoading: false, count: 0, page: 1, results: []});

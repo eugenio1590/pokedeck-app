@@ -1,41 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Card, Badge } from "react-bootstrap";
+import { Card, Stack, Badge } from "react-bootstrap";
 
-const PokemonCard = ({ id, name, image, types, abilities }) => {
-    const typesItems = types.map((type, index) => (<Badge key={index} bg="secondary" className="me-2">{type}</Badge>));
-    const abilitiesItems = abilities.map((ability, index) => (<Badge key={index} bg="secondary" className="me-2">{ability}</Badge>));
-    return (
-        <Card style={{ width: '15rem' }}>
-            <Card.Header>#{id}</Card.Header>
-            <Card.Img variant="top" src={image} width="205px"/>
-            <Card.Body>
-                <Card.Title>{name}</Card.Title>
-                <div className="d-flex flex-column">
-                    <div className="mb-2">
-                        <p className="mb-2">Type</p>
-                        <div className="d-flex">
-                            {typesItems}
-                        </div>
-                    </div>
-                    <div>
-                        <p className="mb-2">Abilities</p>
-                        <div className="d-flex">
-                            {abilitiesItems}
-                        </div>
-                    </div>
-                </div>
-            </Card.Body>
-        </Card>
-    )
+const images = require.context('../images', true)
+const noImageAvailable = images('./No_Image_Available.jpg', true)
+
+const PokemonCard = ({ id, name, image, weight, types, abilities }) => {
+  const [imagePaht, setImagePath] = useState(image);
+  const typesItems = types.map((type, index) => (<Badge pill key={index} bg="light" text="dark">{type}</Badge>));
+  const abilitiesItems = abilities.map((ability, index) => (<Badge pill key={index} bg="secondary">{ability}</Badge>));
+  return (
+    <Card style={{ width: '17rem' }}>
+      <Card.Img variant="top" src={imagePaht} width="205px" onError={() => setImagePath(noImageAvailable)}/>
+      <Card.Body>
+        <h5 className="card-title">#{id} {name}</h5>
+        <h6 className="card-subtitle mb-2 text-body-secondary">Weight: {weight}</h6>
+        <div className="d-flex flex-column">
+          <div className="mb-2 d-flex">
+            <p className="mb-0">Type:</p>
+            <Stack direction="horizontal" gap={1}>
+              {typesItems}
+            </Stack>
+          </div>
+          <div>
+            <Stack direction="horizontal" gap={1} className="d-inline-flex">
+              {abilitiesItems}
+            </Stack>
+          </div>
+        </div>
+      </Card.Body>
+    </Card>
+  )
 }
 
 PokemonCard.propTypes = {
-    id: PropTypes.number,
-    name: PropTypes.string,
-    image: PropTypes.string,
-    types: PropTypes.array,
-    abilities: PropTypes.array
+  id: PropTypes.number,
+  name: PropTypes.string,
+  image: PropTypes.string,
+  weight: PropTypes.string,
+  types: PropTypes.array,
+  abilities: PropTypes.array
 }
 
 export default PokemonCard;

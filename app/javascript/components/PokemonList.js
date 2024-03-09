@@ -4,17 +4,17 @@ import { Row, Col } from "react-bootstrap";
 
 import PokemonCard from "./PokemonCard";
 
-const PokemonList = ({data}) => {
-    const columns = data.map(pokemon => (<Col key={pokemon.id}><PokemonCard {...pokemon}/></Col>))
-    return (
-        <Row xs={1} md={5} className="g-4">
-            {columns}
-        </Row>
-    )
+const PokemonList = ({ data }) => {
+  const columns = data.map(pokemon => (<Col key={pokemon.id}><PokemonCard {...pokemon} /></Col>))
+  return (
+    <Row xs={1} md={4} className="g-4">
+      {columns}
+    </Row>
+  )
 }
 
 PokemonList.protoType = {
-    data: PropTypes.array
+  data: PropTypes.array
 }
 
 export default PokemonList

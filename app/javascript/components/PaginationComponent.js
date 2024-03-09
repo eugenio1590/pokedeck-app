@@ -78,7 +78,7 @@ const PaginationComponent = ({
   return (
     <>
       {isPaginationShown && (
-        <Pagination>
+        <Pagination size="lg">
           <Pagination.Prev
             onClick={onPreviousPageClick}
             disabled={isCurrentPageFirst}
