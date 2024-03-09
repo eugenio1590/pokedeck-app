@@ -7,6 +7,7 @@ import {
   Image
 } from "react-bootstrap";
 
+import PokemonAlert from "./PokemonAlert";
 import PokemonList from "./PokemonList";
 import Pagination from "./PaginationComponent";
 import FullSpinner from "./FullSpinner";
@@ -17,7 +18,7 @@ const logoUrl = images('./logo.png', true)
 const ITEMS_PER_PAGE = 8
 
 const Application = () => {
-  const [state, setState] = useState({isLoading: false, count: 0, page: 1, results: []});
+  const [state, setState] = useState({isLoading: false, count: 0, page: 1, results: [], selected: null});
 
   const onPageChanged = page => {
     fetchData(page);
@@ -34,11 +35,19 @@ const Application = () => {
     }
   }
 
+  const onSelect = (id) => {
+    const pokemon = state.results.find(item => item.id === id);
+    setState({...state, selected: pokemon});
+  }
+
   useEffect(() => { fetchData(state.page) }, []);
 
   return (
     <React.Fragment>
       <main className="text-white" style={{backgroundColor: "#ff0000ab", minHeight: "100vh"}}>
+        <PokemonAlert
+          pokemon={state.selected}
+          onClose={() => setState({...state, selected: null})} />
         <Container className="py-lg-8 py-5">
           <Row className="justify-content-center">
             <Col xl={8} lg={10} className="col-12">
@@ -54,7 +63,9 @@ const Application = () => {
           <Row>
             <Col lg={12}>
               <FullSpinner isActive={state.isLoading}/>
-              <PokemonList data={state.results} />
+              <PokemonList 
+                data={state.results} 
+                onSelect={onSelect} />
               <div className="my-4">
                 <Pagination
                   itemsCount={state.count}

@@ -4,8 +4,8 @@ import { Row, Col } from "react-bootstrap";
 
 import PokemonCard from "./PokemonCard";
 
-const PokemonList = ({ data }) => {
-  const columns = data.map(pokemon => (<Col key={pokemon.id}><PokemonCard {...pokemon} /></Col>))
+const PokemonList = ({ data, onSelect }) => {
+  const columns = data.map(pokemon => (<Col key={pokemon.id}><PokemonCard {...pokemon} onSelect={onSelect} /></Col>))
   return (
     <Row xs={1} md={4} className="g-4">
       {columns}
@@ -14,7 +14,8 @@ const PokemonList = ({ data }) => {
 }
 
 PokemonList.protoType = {
-  data: PropTypes.array
+  data: PropTypes.array.isRequired,
+  onSelect: PropTypes.func.isRequired
 }
 
 export default PokemonList
