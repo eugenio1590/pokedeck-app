@@ -8,7 +8,8 @@ import {
 } from "react-bootstrap";
 
 import PokemonList from "./PokemonList";
-import Pagination from "./PaginationComponent"
+import Pagination from "./PaginationComponent";
+import FullSpinner from "./FullSpinner";
 
 const images = require.context('../images', true)
 const logoUrl = images('./logo.png', true)
@@ -16,7 +17,7 @@ const logoUrl = images('./logo.png', true)
 const ITEMS_PER_PAGE = 10
 
 const Application = () => {
-  const [data, setData] = useState({count: 0, page: 1, results: []});
+  const [data, setData] = useState({isLoading: false, count: 0, page: 1, results: []});
 
   const onPageChanged = page => {
     fetchData(page);
@@ -24,10 +25,11 @@ const Application = () => {
 
   const fetchData = async page => {
     if (page > 0) {
+      setData({...data, isLoading: true})
       let response = await fetch(`/pokemon.json?page=${page}&limit=${ITEMS_PER_PAGE}`);
       if (response.ok) {
         let data = await response.json();
-        setData(data);
+        setData({...data, isLoading: false});
       }
     }
   }
@@ -51,9 +53,9 @@ const Application = () => {
           </Row>
           <Row>
             <Col lg={12}>
+              <FullSpinner isActive={data.isLoading}/>
               <PokemonList data={data.results} />
-              <div
-                className="my-4">
+              <div className="my-4">
                 <Pagination
                   itemsCount={data.count}
                   itemsPerPage={ITEMS_PER_PAGE}
