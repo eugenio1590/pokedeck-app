@@ -17,7 +17,7 @@ const logoUrl = images('./logo.png', true)
 const ITEMS_PER_PAGE = 10
 
 const Application = () => {
-  const [data, setData] = useState({isLoading: false, count: 0, page: 1, results: []});
+  const [state, setState] = useState({isLoading: false, count: 0, page: 1, results: []});
 
   const onPageChanged = page => {
     fetchData(page);
@@ -25,16 +25,16 @@ const Application = () => {
 
   const fetchData = async page => {
     if (page > 0) {
-      setData({...data, isLoading: true})
+      setState({...state, isLoading: true})
       let response = await fetch(`/pokemon.json?page=${page}&limit=${ITEMS_PER_PAGE}`);
       if (response.ok) {
         let data = await response.json();
-        setData({...data, isLoading: false});
+        setState({...data, isLoading: false});
       }
     }
   }
 
-  useEffect(() => { fetchData(data.page) }, []);
+  useEffect(() => { fetchData(state.page) }, []);
 
   return (
     <React.Fragment>
@@ -53,13 +53,13 @@ const Application = () => {
           </Row>
           <Row>
             <Col lg={12}>
-              <FullSpinner isActive={data.isLoading}/>
-              <PokemonList data={data.results} />
+              <FullSpinner isActive={state.isLoading}/>
+              <PokemonList data={state.results} />
               <div className="my-4">
                 <Pagination
-                  itemsCount={data.count}
+                  itemsCount={state.count}
                   itemsPerPage={ITEMS_PER_PAGE}
-                  currentPage={data.page}
+                  currentPage={state.page}
                   setCurrentPage={onPageChanged}
                   alwaysShown={false}
                 />
