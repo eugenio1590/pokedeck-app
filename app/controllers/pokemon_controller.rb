@@ -5,7 +5,7 @@ class PokemonController < ApplicationController
   end
 
   def show
-    @info = PokemonInfoService.new(name: params[:name].downcase).call
+    @info = PokemonInfoService.new(name: params[:name].downcase, simple: false).call
     @evolutions = EvolutionChainService.new(id: @info[:chain_id]).call
     @info = @info.merge({evolutions: @evolutions})
     render json: @info

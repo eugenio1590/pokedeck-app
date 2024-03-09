@@ -13,11 +13,12 @@ RSpec.describe EvolutionChainService do
             id: 172, 
             name: "Pichu",
             weight: 20, 
-            color: "yellow",
-            description: "It is not yet\nskilled at storing\nelectricity.\fIt may send out a\njolt if amused\nor startled.", 
+            specie_id: "172",
             image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/172.png", 
             types: ["Electric"], 
             abilities: ["Static", "Lightning-rod"],
+            color: "yellow",
+            description: "It is not yet\nskilled at storing\nelectricity.\fIt may send out a\njolt if amused\nor startled.", 
             chain_id: "10"
           },
           evolves_to: [
@@ -26,11 +27,12 @@ RSpec.describe EvolutionChainService do
                 id: 25,
                 name: "Pikachu",
                 weight: 60,
-                color: "yellow",
-                description: "When several of\nthese POKéMON\ngather, their\felectricity could\nbuild and cause\nlightning storms.", 
+                specie_id: "25",
                 image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png", 
                 types: ["Electric"], 
                 abilities: ["Static", "Lightning-rod"],
+                color: "yellow",
+                description: "When several of\nthese POKéMON\ngather, their\felectricity could\nbuild and cause\nlightning storms.", 
                 chain_id: "10"
               },
               evolves_to: [
@@ -39,11 +41,12 @@ RSpec.describe EvolutionChainService do
                     id: 26,
                     name: "Raichu", 
                     weight: 300,
-                    color: "yellow", 
-                    description: "Its long tail serves as a ground to protect itself\nfrom its own high-voltage power.", 
+                    specie_id: "26",
                     image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/26.png", 
                     types: ["Electric"], 
                     abilities: ["Static", "Lightning-rod"],
+                    color: "yellow", 
+                    description: "Its long tail serves as a ground to protect itself\nfrom its own high-voltage power.", 
                     chain_id: "10"
                   },
                   evolves_to: []

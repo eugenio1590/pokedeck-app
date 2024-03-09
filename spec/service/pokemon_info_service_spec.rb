@@ -4,7 +4,7 @@ RSpec.describe PokemonInfoService do
   describe '#call' do
     it 'fetches Pokemon details from PokeApi' do
       VCR.use_cassette('fetch_pokemon_pikachu') do
-        service = PokemonInfoService.new(name: 'pikachu')
+        service = PokemonInfoService.new(name: 'pikachu', simple: false)
 
         result = service.call
 

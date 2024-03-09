@@ -20,7 +20,7 @@ class EvolutionChainService
 
   def build_evoultion_item(item)
     {
-      info: PokemonInfoService.new(name: item.species.name).call,
+      info: PokemonInfoService.new(name: item.species.name, simple: false).call,
       evolves_to: item.evolves_to.map { |item| build_evoultion_item(item) }
     }
   end
