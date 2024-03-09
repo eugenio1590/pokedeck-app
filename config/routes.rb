@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
   get "/pokemon", to: "pokemon#index"
+  get "/pokemon/:name", to: "pokemon#show"
 end

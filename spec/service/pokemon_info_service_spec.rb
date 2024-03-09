@@ -13,6 +13,7 @@ RSpec.describe PokemonInfoService do
         expect(result[:weight]).to eq(60)
         expect(result[:types]).to eq(['Electric'])
         expect(result[:abilities]).to eq(['Static', 'Lightning-rod'])
+        expect(result[:chain_id]).to eq("10")
       end
     end
   end
