@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Modal, Stack, Badge } from "react-bootstrap";
+import { Container, Modal, Stack, Badge } from "react-bootstrap";
+
+import EvolutionChain from "./EvolutionChain"
 
 const images = require.context('../images', true)
 const noImageAvailable = images('./No_Image_Available.jpg', true)
@@ -11,7 +13,8 @@ const PokemonCard = ({pokemon, onClose}) => {
   const weight = pokemon != null ? pokemon.weight : '';
   const imagePaht = pokemon != null ? pokemon.image : noImageAvailable;
   const typesItems = pokemon != null ? pokemon.types.map((type, index) => (<Badge pill key={index} bg="secondary">{type}</Badge>)) : [];
-  const abilitiesItems = pokemon != null ? pokemon.abilities.map((ability, index) => (<p pill key={index}>{ability}</p>)) : [];
+  const abilitiesItems = pokemon != null ? pokemon.abilities.map((ability, index) => (<p key={index}>{ability}</p>)) : [];
+  const evolutions = pokemon != null ? <EvolutionChain chain={pokemon.evolutions} /> : "Does Not Have Evolutions"
   return (
     <Modal
       aria-labelledby="contained-modal-title-vcenter"
@@ -31,19 +34,22 @@ const PokemonCard = ({pokemon, onClose}) => {
           <p>{description}</p>
           <dl className="row">
             <dt className="col-sm-3">Weight</dt>
-            <dd className="col-sm-9">Weight: {weight} kg</dd>
+            <dd className="col-sm-9">Weight: {weight/10} kg</dd>
 
             <dt className="col-sm-3">Abilities</dt>
             <dd className="col-sm-9">{abilitiesItems}</dd>
           </dl>
         </div>
+
+        <Container>
+          {evolutions}
+        </Container>
       </Modal.Body>
     </Modal>
   )
 }
 
 PokemonCard.propTypes = {
-  isShow: PropTypes.bool.isRequired,
   pokemon: PropTypes.object,
   onClose: PropTypes.func.isRequired
 }

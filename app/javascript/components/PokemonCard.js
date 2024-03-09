@@ -10,11 +10,11 @@ const PokemonCard = ({ id, name, image, weight, types, abilities, onSelect }) =>
   const typesItems = types.map((type, index) => (<Badge pill key={index} bg="light" text="dark">{type}</Badge>));
   const abilitiesItems = abilities.map((ability, index) => (<Badge pill key={index} bg="secondary">{ability}</Badge>));
   return (
-    <Card style={{ width: '17rem' }} onClick={() => onSelect(id) }>
+    <Card style={{ width: '17rem' }} onClick={() => onSelect(name) }>
       <Card.Img variant="top" src={imagePaht} width="205px" onError={() => setImagePath(noImageAvailable)}/>
       <Card.Body>
         <h5 className="card-title">#{id} {name}</h5>
-        <h6 className="card-subtitle mb-2 text-body-secondary">Weight: {weight} kg</h6>
+        <h6 className="card-subtitle mb-2 text-body-secondary">Weight: {weight/10} kg</h6>
         <div className="d-flex flex-column">
           <div className="mb-2 d-flex">
             <p className="mb-0">Type:</p>

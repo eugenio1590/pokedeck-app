@@ -31,13 +31,21 @@ const Application = () => {
       if (response.ok) {
         let data = await response.json();
         setState({...data, isLoading: false});
+      } else {
+        setState({...state, isLoading: false})
       }
     }
   }
 
-  const onSelect = (id) => {
-    const pokemon = state.results.find(item => item.id === id);
-    setState({...state, selected: pokemon});
+  const onSelect = async (name) => {
+    setState({...state, isLoading: true})
+    let response = await fetch(`/pokemon/${name}`);
+    if (response.ok) {
+      let pokemon = await response.json();
+      setState({...state, selected: pokemon, isLoading: false});
+    } else {
+      setState({...state, isLoading: false})
+    }
   }
 
   useEffect(() => { fetchData(state.page) }, []);
